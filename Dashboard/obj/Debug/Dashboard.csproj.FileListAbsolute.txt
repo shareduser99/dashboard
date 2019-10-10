@@ -1,0 +1,12 @@
+C:\Users\Paul\source\repos\Dashboard\Dashboard\bin\Debug\Dashboard.exe.config
+C:\Users\Paul\source\repos\Dashboard\Dashboard\bin\Debug\Dashboard.exe
+C:\Users\Paul\source\repos\Dashboard\Dashboard\bin\Debug\Dashboard.pdb
+C:\Users\Paul\source\repos\Dashboard\Dashboard\obj\Debug\Dashboard.csprojAssemblyReference.cache
+C:\Users\Paul\source\repos\Dashboard\Dashboard\obj\Debug\Dashboard.Form1.resources
+C:\Users\Paul\source\repos\Dashboard\Dashboard\obj\Debug\Dashboard.Properties.Resources.resources
+C:\Users\Paul\source\repos\Dashboard\Dashboard\obj\Debug\Dashboard.csproj.GenerateResource.cache
+C:\Users\Paul\source\repos\Dashboard\Dashboard\obj\Debug\Dashboard.exe
+C:\Users\Paul\source\repos\Dashboard\Dashboard\obj\Debug\Dashboard.pdb
+C:\Users\Paul\source\repos\Dashboard\Dashboard\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Paul\source\repos\Dashboard\Dashboard\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Paul\source\repos\Dashboard\Dashboard\obj\Debug\Dashboard.csproj.CopyComplete
