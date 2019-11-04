@@ -1,0 +1,15 @@
+{
+    "auto_connect": true,
+    "check_updates": false,
+    "config_version": 3,
+    "console-history": [],
+    "gui_last_wallet": "c:\\users\\paul\\source\\repos\\dashboard\\dashboard\\electrum-daemon\\electrum_data\\wallets\\electrum_wallet",
+    "is_maximized": false,
+    "recently_open": [
+        "c:\\users\\paul\\source\\repos\\dashboard\\dashboard\\electrum-daemon\\electrum_data\\wallets\\electrum_wallet"
+    ],
+    "rpcpassword": "myrpcpass",
+    "rpcuser": "user",
+    "rpcport": 7777,
+    "rpchost": "127.0.0.1"
+}
