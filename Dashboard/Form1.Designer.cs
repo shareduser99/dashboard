@@ -46,21 +46,36 @@
             this.ElectrumDownloadLink = new System.Windows.Forms.LinkLabel();
             this.ElectrumDocumentationLink = new System.Windows.Forms.LinkLabel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.DashboardElectrumBalance = new System.Windows.Forms.Label();
-            this.DashboardElectrumLabel = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.DashboardBinanceBalance = new System.Windows.Forms.Label();
-            this.DashboardBinanceLabel = new System.Windows.Forms.Label();
+            this.electrumMenu = new Dashboard.ButtonZ();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.DashboardBinanceBalance = new System.Windows.Forms.Label();
+            this.DashboardBinanceLabel = new System.Windows.Forms.Label();
+            this.DashboardElectrumBalance = new System.Windows.Forms.Label();
+            this.DashboardElectrumLabel = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.addressList = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.LeftTopPanel.SuspendLayout();
             this.TopPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.tabControl.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // TopBorderPanel
@@ -153,7 +168,7 @@
             this.TopPanel.Location = new System.Drawing.Point(241, 4);
             this.TopPanel.Margin = new System.Windows.Forms.Padding(0);
             this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(505, 60);
+            this.TopPanel.Size = new System.Drawing.Size(505, 58);
             this.TopPanel.TabIndex = 5;
             this.TopPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseDown);
             this.TopPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseMove);
@@ -163,6 +178,7 @@
             // 
             this.MinButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.MinButton.BZBackColor = System.Drawing.Color.White;
+            this.MinButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.MinButton.DisplayText = "_";
             this.MinButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MinButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -185,6 +201,7 @@
             this.MaxButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.MaxButton.BZBackColor = System.Drawing.Color.White;
             this.MaxButton.CFormState = Dashboard.MinMaxButton.CustomFormState.Normal;
+            this.MaxButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.MaxButton.DisplayText = "_";
             this.MaxButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MaxButton.ForeColor = System.Drawing.Color.Black;
@@ -206,6 +223,7 @@
             this.CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CloseButton.BackColor = System.Drawing.Color.White;
             this.CloseButton.BZBackColor = System.Drawing.Color.White;
+            this.CloseButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CloseButton.DisplayText = "X\r\n\r\n";
             this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -240,10 +258,12 @@
             // HomeIcon
             // 
             this.HomeIcon.BackgroundImage = global::Dashboard.Properties.Resources.home_icon;
+            this.HomeIcon.Cursor = System.Windows.Forms.Cursors.Hand;
             this.HomeIcon.Location = new System.Drawing.Point(24, 12);
             this.HomeIcon.Name = "HomeIcon";
             this.HomeIcon.Size = new System.Drawing.Size(26, 26);
             this.HomeIcon.TabIndex = 6;
+            this.HomeIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.HomeIcon_Click);
             // 
             // BinanceLoginLabel
             // 
@@ -296,6 +316,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.panel1.Controls.Add(this.electrumMenu);
             this.panel1.ForeColor = System.Drawing.Color.Black;
             this.panel1.Location = new System.Drawing.Point(4, 57);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
@@ -303,65 +324,57 @@
             this.panel1.Size = new System.Drawing.Size(238, 420);
             this.panel1.TabIndex = 6;
             // 
-            // panel2
+            // electrumMenu
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.electrumMenu.BZBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.electrumMenu.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.electrumMenu.DisplayText = "Electrum Wallet";
+            this.electrumMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.electrumMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.electrumMenu.ForeColor = System.Drawing.Color.White;
+            this.electrumMenu.Location = new System.Drawing.Point(-1, 0);
+            this.electrumMenu.MouseClickColor1 = System.Drawing.Color.Black;
+            this.electrumMenu.MouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.electrumMenu.Name = "electrumMenu";
+            this.electrumMenu.Size = new System.Drawing.Size(239, 46);
+            this.electrumMenu.TabIndex = 0;
+            this.electrumMenu.Text = "Electrum Wallet";
+            this.electrumMenu.TextLocation_X = 35;
+            this.electrumMenu.TextLocation_Y = 10;
+            this.electrumMenu.UseVisualStyleBackColor = true;
+            this.electrumMenu.Click += new System.EventHandler(this.electrumMenu_Click);
+            // 
+            // tabControl
+            // 
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(100)))), ((int)(((byte)(180)))));
-            this.panel2.Controls.Add(this.DashboardElectrumBalance);
-            this.panel2.Controls.Add(this.DashboardElectrumLabel);
-            this.panel2.Location = new System.Drawing.Point(241, 57);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(504, 126);
-            this.panel2.TabIndex = 7;
+            this.tabControl.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.tabControl.Controls.Add(this.tabPage1);
+            this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.ItemSize = new System.Drawing.Size(0, 1);
+            this.tabControl.Location = new System.Drawing.Point(241, 57);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(0);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.Padding = new System.Drawing.Point(0, 0);
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(505, 423);
+            this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabControl.TabIndex = 0;
+            this.tabControl.TabStop = false;
             // 
-            // DashboardElectrumBalance
+            // tabPage1
             // 
-            this.DashboardElectrumBalance.AutoSize = true;
-            this.DashboardElectrumBalance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(240)))));
-            this.DashboardElectrumBalance.Location = new System.Drawing.Point(335, 61);
-            this.DashboardElectrumBalance.Name = "DashboardElectrumBalance";
-            this.DashboardElectrumBalance.Size = new System.Drawing.Size(95, 25);
-            this.DashboardElectrumBalance.TabIndex = 1;
-            this.DashboardElectrumBalance.Text = "0 mBTC";
-            // 
-            // DashboardElectrumLabel
-            // 
-            this.DashboardElectrumLabel.AutoSize = true;
-            this.DashboardElectrumLabel.Location = new System.Drawing.Point(285, 12);
-            this.DashboardElectrumLabel.Name = "DashboardElectrumLabel";
-            this.DashboardElectrumLabel.Size = new System.Drawing.Size(196, 25);
-            this.DashboardElectrumLabel.TabIndex = 0;
-            this.DashboardElectrumLabel.Text = "Electrum Balance";
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(60)))), ((int)(((byte)(100)))));
-            this.panel3.Controls.Add(this.DashboardBinanceBalance);
-            this.panel3.Controls.Add(this.DashboardBinanceLabel);
-            this.panel3.Location = new System.Drawing.Point(241, 57);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(254, 129);
-            this.panel3.TabIndex = 0;
-            // 
-            // DashboardBinanceBalance
-            // 
-            this.DashboardBinanceBalance.AutoSize = true;
-            this.DashboardBinanceBalance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(240)))));
-            this.DashboardBinanceBalance.Location = new System.Drawing.Point(76, 61);
-            this.DashboardBinanceBalance.Name = "DashboardBinanceBalance";
-            this.DashboardBinanceBalance.Size = new System.Drawing.Size(95, 25);
-            this.DashboardBinanceBalance.TabIndex = 1;
-            this.DashboardBinanceBalance.Text = "0 mBTC";
-            // 
-            // DashboardBinanceLabel
-            // 
-            this.DashboardBinanceLabel.AutoSize = true;
-            this.DashboardBinanceLabel.Location = new System.Drawing.Point(30, 12);
-            this.DashboardBinanceLabel.Name = "DashboardBinanceLabel";
-            this.DashboardBinanceLabel.Size = new System.Drawing.Size(189, 25);
-            this.DashboardBinanceLabel.TabIndex = 0;
-            this.DashboardBinanceLabel.Text = "Binance Balance";
+            this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.panel4);
+            this.tabPage1.Controls.Add(this.panel2);
+            this.tabPage1.ForeColor = System.Drawing.Color.White;
+            this.tabPage1.Location = new System.Drawing.Point(4, 5);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(0);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(497, 414);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
             // 
             // panel4
             // 
@@ -375,9 +388,10 @@
             this.panel4.Controls.Add(this.ElectrumDocumentationLink);
             this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.label2);
-            this.panel4.Location = new System.Drawing.Point(242, 183);
+            this.panel4.Location = new System.Drawing.Point(0, 127);
+            this.panel4.Margin = new System.Windows.Forms.Padding(0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(503, 294);
+            this.panel4.Size = new System.Drawing.Size(497, 287);
             this.panel4.TabIndex = 8;
             // 
             // label4
@@ -409,14 +423,143 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Quick Links";
             // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(100)))), ((int)(((byte)(180)))));
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Controls.Add(this.DashboardElectrumBalance);
+            this.panel2.Controls.Add(this.DashboardElectrumLabel);
+            this.panel2.Location = new System.Drawing.Point(-1, -5);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(502, 136);
+            this.panel2.TabIndex = 7;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(60)))), ((int)(((byte)(100)))));
+            this.panel3.Controls.Add(this.DashboardBinanceBalance);
+            this.panel3.Controls.Add(this.DashboardBinanceLabel);
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(258, 136);
+            this.panel3.TabIndex = 0;
+            // 
+            // DashboardBinanceBalance
+            // 
+            this.DashboardBinanceBalance.AutoSize = true;
+            this.DashboardBinanceBalance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(240)))));
+            this.DashboardBinanceBalance.Location = new System.Drawing.Point(76, 61);
+            this.DashboardBinanceBalance.Name = "DashboardBinanceBalance";
+            this.DashboardBinanceBalance.Size = new System.Drawing.Size(95, 25);
+            this.DashboardBinanceBalance.TabIndex = 1;
+            this.DashboardBinanceBalance.Text = "0 mBTC";
+            // 
+            // DashboardBinanceLabel
+            // 
+            this.DashboardBinanceLabel.AutoSize = true;
+            this.DashboardBinanceLabel.Location = new System.Drawing.Point(30, 12);
+            this.DashboardBinanceLabel.Name = "DashboardBinanceLabel";
+            this.DashboardBinanceLabel.Size = new System.Drawing.Size(189, 25);
+            this.DashboardBinanceLabel.TabIndex = 0;
+            this.DashboardBinanceLabel.Text = "Binance Balance";
+            // 
+            // DashboardElectrumBalance
+            // 
+            this.DashboardElectrumBalance.AutoSize = true;
+            this.DashboardElectrumBalance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(240)))));
+            this.DashboardElectrumBalance.Location = new System.Drawing.Point(335, 61);
+            this.DashboardElectrumBalance.Name = "DashboardElectrumBalance";
+            this.DashboardElectrumBalance.Size = new System.Drawing.Size(95, 25);
+            this.DashboardElectrumBalance.TabIndex = 1;
+            this.DashboardElectrumBalance.Text = "0 mBTC";
+            // 
+            // DashboardElectrumLabel
+            // 
+            this.DashboardElectrumLabel.AutoSize = true;
+            this.DashboardElectrumLabel.Location = new System.Drawing.Point(285, 12);
+            this.DashboardElectrumLabel.Name = "DashboardElectrumLabel";
+            this.DashboardElectrumLabel.Size = new System.Drawing.Size(196, 25);
+            this.DashboardElectrumLabel.TabIndex = 0;
+            this.DashboardElectrumLabel.Text = "Electrum Balance";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.panel5);
+            this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Location = new System.Drawing.Point(4, 5);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(497, 414);
+            this.tabPage2.TabIndex = 2;
+            this.tabPage2.Text = "tabPage2";
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(100)))), ((int)(((byte)(180)))));
+            this.panel5.Controls.Add(this.addressList);
+            this.panel5.Controls.Add(this.label6);
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(497, 415);
+            this.panel5.TabIndex = 1;
+            // 
+            // addressList
+            // 
+            this.addressList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.addressList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.addressList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.addressList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addressList.Location = new System.Drawing.Point(6, 54);
+            this.addressList.Name = "addressList";
+            this.addressList.Size = new System.Drawing.Size(485, 200);
+            this.addressList.TabIndex = 1;
+            this.addressList.UseCompatibleStateImageBehavior = false;
+            this.addressList.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Address";
+            this.columnHeader1.Width = -1;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Balance";
+            this.columnHeader2.Width = 100;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(6, 7);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(137, 29);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Addresses";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(54, 36);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(76, 25);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "label5";
+            // 
             // CryptoDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(750, 480);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.TopPanel);
             this.Controls.Add(this.LeftTopPanel);
@@ -435,12 +578,19 @@
             this.LeftTopPanel.PerformLayout();
             this.TopPanel.ResumeLayout(false);
             this.TopPanel.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -474,6 +624,16 @@
         private System.Windows.Forms.LinkLabel ElectrumDownloadLink;
         private System.Windows.Forms.LinkLabel BinanceLoginLabel;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Label label5;
+        private ButtonZ electrumMenu;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ListView addressList;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }
 

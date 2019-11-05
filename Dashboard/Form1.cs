@@ -29,13 +29,23 @@ namespace Dashboard
         Point offset;
         Size _normalWindowSize;
         Point _normalWindowLocation = Point.Empty;
-        private int ElectrumBalance = 0;
-        private int BinanceBalance = 0;
+        private int ElectrumBalance;
+        private int BinanceBalance;
         private BinanceAuthenticator BinanceAPI;
-        public string ElectrumRPC(string method)
+        public string ElectrumRPC(string method, string paramList)
         {
-            var json = "{\"method\":\"" + method + "\",\"id\":\"1\"}";
+   
+            var json = "{\"method\":\"" + method + "\",\"id\":\"1\"";
+             
+            if (paramList.Length == 0)
+            {
+                json += "}";
+            }
 
+            else
+            {
+                json += ", \"params\":" + paramList + "}";
+            }
             var jsonrpc_response_raw = "";
 
             #region http web request
@@ -86,10 +96,10 @@ namespace Dashboard
             return jsonrpc_response_raw;
         }
 
-        public CryptoDashboard()
+        private void InitalizeDashboard()
         {
-            InitializeComponent();
-            /* BinanceAPI = new BinanceAuthenticator("DyQjRW8xyaAwwx7uu5EB3KUVXGnY5HPfW8Pkkd6djMvN9YnylHT4AOeKxZTDPrkV", "WCEA0bKYd1tw5BLjYW9o3HGyODWQCYiKlljjVn7RVOqV6vSRGBAZIKxGkc3dAF9Q");
+             /* //Initalize Binance Info
+            BinanceAPI = new BinanceAuthenticator("DyQjRW8xyaAwwx7uu5EB3KUVXGnY5HPfW8Pkkd6djMvN9YnylHT4AOeKxZTDPrkV", "WCEA0bKYd1tw5BLjYW9o3HGyODWQCYiKlljjVn7RVOqV6vSRGBAZIKxGkc3dAF9Q");
             var client = BinanceAPI.NewAPIClient();
             var request = BinanceAPI.NewGetRequest("/api/v3/account", DataFormat.Json);
             var response = client.Get(request);
@@ -101,6 +111,7 @@ namespace Dashboard
                     if ((item["asset"].ToString()) == "BTC")
                     {
                         DashboardBinanceBalance.Text = item["free"].ToString();
+                        BinanceBalance = Int32.Parse(item["free"].ToString());
                     }
                 }
             }
@@ -108,12 +119,31 @@ namespace Dashboard
             else
             {
                 DashboardBinanceBalance.Text = "0 mBTC";
-            }
-            */
+            } */
 
-             var startProcess = new CMDProcess("C:\\Users\\Paul\\source\\repos\\Dashboard\\Dashboard\\electrum-daemon", "start_daemon-rpc.bat");
-             startProcess.Run();
-             DashboardBinanceBalance.Text = (JObject.Parse(ElectrumRPC("getbalance"))["result"]["confirmed"]).ToString() + " mBTC";
+            //Initialize Electrum info
+            var startProcess = new CMDProcess("C:\\Users\\Paul\\source\\repos\\Dashboard\\Dashboard\\electrum-daemon", "start_daemon-rpc.bat");
+            startProcess.Run();
+            ElectrumBalance = Int32.Parse(((JObject.Parse(ElectrumRPC("getbalance", ""))["result"]["confirmed"]).ToString()));
+            DashboardBinanceBalance.Text = ElectrumBalance.ToString() + " mBTC";
+
+
+            var addresses = JObject.Parse(ElectrumRPC("listaddresses", ""))["result"];
+            foreach (var address in addresses)
+            {
+                string paramList = "[\"" + address + "\"]";
+                string balance = JObject.Parse(ElectrumRPC("getaddressbalance", paramList))["result"]["confirmed"].ToString();
+                var row = new string[] { address.ToString(), balance };
+                var lvi = new ListViewItem(row);
+                addressList.Items.Add(lvi);
+            }
+            tabControl.SelectedTab = tabPage1;
+        }
+
+        public CryptoDashboard()
+        {
+            InitializeComponent();
+            InitalizeDashboard();
 }
 
         private void TopBorderPanel_MouseDown(object sender, MouseEventArgs e)
@@ -391,6 +421,17 @@ namespace Dashboard
         private void BinanceLoginLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://www.binance.us/en/login");
+        }
+
+        private void electrumMenu_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectedTab = tabPage2;
+        }
+
+
+        private void HomeIcon_Click(object sender, MouseEventArgs e)
+        {
+            tabControl.SelectedTab = tabPage1;
         }
     }
 
